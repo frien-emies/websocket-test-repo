@@ -6,12 +6,17 @@ import Message from './components/Message/Message'
 import TextInput from './components/TextInput/TextInput'
 
 function App() {
-  const [message, setMessage] = useState('')
+  const [message, setMessage] = useState('hi')
+  const [users, setUsers] = useState([1,2])
+  function updateMessage(newMessage){
+    setMessage(newMessage)
+  };
 
   return (
     <>
     <Message message = {message}/>
-    <TextInput/>
+    <TextInput user = {users[0]} updateMessage = {updateMessage}/>
+    <TextInput user = {users[1]} updateMessage = {updateMessage}/>
     </>
   )
 }
