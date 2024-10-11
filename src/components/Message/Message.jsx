@@ -1,6 +1,6 @@
-function Message(){
+function Message({message}){
     return (
-    <div>Message</div>
+    <div>{message}</div>
     )
 }
 

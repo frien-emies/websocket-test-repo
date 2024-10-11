@@ -10,7 +10,7 @@ function App() {
 
   return (
     <>
-    <Message/>
+    <Message message = {message}/>
     <TextInput/>
     </>
   )
