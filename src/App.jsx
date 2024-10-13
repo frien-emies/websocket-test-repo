@@ -31,7 +31,7 @@ function App() {
     socket.connect()
     sendMessage('Gwen', 'Hello')
     socket.on("message", (data)=>{
-      console.log(data)
+      updateMessage(data.split(':')[1], data.split(':')[0])
     })
   },[])
 
