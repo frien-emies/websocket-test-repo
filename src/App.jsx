@@ -10,7 +10,9 @@ function App() {
   const [message, setMessage] = useState(['',''])
   const [users, setUsers] = useState([1,2])
 
-
+  function sendMessage (username, message){
+    socket.emit("message", {"username": username, "message": message})
+  }
   function updateMessage(newMessage, user){
     let newMessages = [...message]
     if (user === 1){
@@ -25,6 +27,10 @@ function App() {
 
   useEffect(()=>{
     socket.connect()
+    sendMessage('Gwen', 'Hello')
+    socket.on("message", (data)=>{
+      console.log(data)
+    })
   },[])
 
   return (
