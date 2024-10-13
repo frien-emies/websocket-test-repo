@@ -20,6 +20,7 @@ function App() {
     } else if (user === '2') {
       newMessages = [newMessages[0],newMessage]
     }
+ 
     setMessage(newMessages)
   };
 
