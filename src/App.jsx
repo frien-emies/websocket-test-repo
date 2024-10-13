@@ -4,16 +4,14 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Message from './components/Message/Message'
 import TextInput from './components/TextInput/TextInput'
-import { socket } from '../utils/socket'
+import { sendMessage, socket } from '../utils/socket'
 import { getMessage } from '../utils/apiCalls'
 
 function App() {
   const [message, setMessage] = useState(['',''])
   const [users, setUsers] = useState([1,2])
 
-  function sendMessage (username, message){
-    socket.emit("message", {"username": username, "message": message})
-  }
+
   function updateMessage(newMessage, user){
     let newMessages = [...message]
     if (user === 1){
@@ -29,7 +27,7 @@ function App() {
   useEffect(()=>{
     // getMessage()
     socket.connect()
-    sendMessage('Gwen', 'Hello')
+    sendMessage('1', 'green')
     socket.on("message", (data)=>{
       updateMessage(data.split(':')[1], data.split(':')[0])
     })
