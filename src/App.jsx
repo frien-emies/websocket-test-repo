@@ -1,13 +1,17 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Message from './components/Message/Message'
 import TextInput from './components/TextInput/TextInput'
+import { socket } from './socket'
 
 function App() {
   const [message, setMessage] = useState(['',''])
   const [users, setUsers] = useState([1,2])
+  const [isConnected, setIsConnected] = useState(socket.connected);
+  const [fooEvents, setFooEvents] = useState([]);
+
 
   function updateMessage(newMessage, user){
     let newMessages = [...message]
@@ -20,12 +24,18 @@ function App() {
     console.log(message)
   };
 
+
+  useEffect(()=>{
+    socket.connect()
+  },[])
+
   return (
     <>
     <Message message = {message[0]}/>
     <Message message = {message[1]}/>
     <TextInput user = {users[0]} updateMessage = {updateMessage}/>
     <TextInput user = {users[1]} updateMessage = {updateMessage}/>
+    
     </>
   )
 }
