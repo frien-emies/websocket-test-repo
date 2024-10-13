@@ -9,8 +9,6 @@ import { socket } from './socket'
 function App() {
   const [message, setMessage] = useState(['',''])
   const [users, setUsers] = useState([1,2])
-  const [isConnected, setIsConnected] = useState(socket.connected);
-  const [fooEvents, setFooEvents] = useState([]);
 
 
   function updateMessage(newMessage, user){
