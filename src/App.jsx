@@ -9,25 +9,23 @@ import { getMessage } from '../utils/apiCalls'
 
 function App() {
   const [message, setMessage] = useState(['',''])
-  const [users, setUsers] = useState([1,2])
+  const [users, setUsers] = useState(['1','2'])
 
 
   function updateMessage(newMessage, user){
+    
     let newMessages = [...message]
-    if (user === 1){
+    if (user === '1'){
       newMessages = [newMessage,newMessages[1]]
-    } else {
+    } else if (user === '2') {
       newMessages = [newMessages[0],newMessage]
     }
     setMessage(newMessages)
-    console.log(message)
   };
 
 
   useEffect(()=>{
-    // getMessage()
     socket.connect()
-    sendMessage('1', 'green')
     socket.on("message", (data)=>{
       updateMessage(data.split(':')[1], data.split(':')[0])
     })
@@ -37,8 +35,8 @@ function App() {
     <>
     <Message message = {message[0]}/>
     <Message message = {message[1]}/>
-    <TextInput user = {users[0]} updateMessage = {updateMessage}/>
-    <TextInput user = {users[1]} updateMessage = {updateMessage}/>
+    <TextInput user = {users[0]}/>
+    <TextInput user = {users[1]}/>
     
     </>
   )
