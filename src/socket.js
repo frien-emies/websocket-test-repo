@@ -1,5 +1,19 @@
-import {io} from 'socket.io-client'
+import { io } from 'socket.io-client';
 
-const URL = process.env.NODE_ENV === 'production' ? undefined : 'http://localhost:5000';
+// const URL = process.env.NODE_ENV === 'production'
+//   ? 'https://your-production-server.com'  // Replace this with your actual production server URL
+//   : 'http://localhost:5000';  // Local server URL for development
+ export const socket = io.connect('http://localhost:5001');
+//   transports: ['websocket'],  // Ensure WebSocket is used
+//   withCredentials: false,      
+// });
 
-export const socket = io(URL);
+
+
+socket.on('connect', () => {
+  console.log('Connected to WebSocket server');
+});
+
+socket.on('disconnect', () => {
+  console.log('Disconnected from WebSocket server');
+});
