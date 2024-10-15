@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { sendMessage } from "../../../utils/socket";
 
-function TextInput({updateMessage, user}){
+function TextInput({user}){
     const [userMessage, setUserMessage] = useState('')
 
     function updateUserMessage(value, user){
@@ -10,7 +11,7 @@ function TextInput({updateMessage, user}){
         <>
         {/* <input placeholder="who's sending this message?" id="username"></input> */}
         <input placeholder="write message here" id="newMessage" onChange={(e)=>{updateUserMessage(e.target.value)}}></input>
-        <button onClick={()=>{updateMessage(userMessage, user)}}>submit</button>
+        <button id={`${user}`} onClick={(e)=>{sendMessage(e.target.id, userMessage)}}>submit</button>
         </>
     )
 }
